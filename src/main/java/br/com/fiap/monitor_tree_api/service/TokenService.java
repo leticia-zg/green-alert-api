@@ -16,7 +16,7 @@ import br.com.fiap.monitor_tree_api.model.Usuario;
 @Service
 public class TokenService {
 
-    private Instant experiesAt = LocalDateTime.now().plusMinutes(120).toInstant(ZoneOffset.ofHours(-3));
+    private Instant experiesAt = LocalDateTime.now().plusDays(1).toInstant(ZoneOffset.ofHours(-3));
     private Algorithm algorithm = Algorithm.HMAC256("secret-muito-secreto-que-ninguem-pode-saber");
 
     public Token createToken(Usuario user){
