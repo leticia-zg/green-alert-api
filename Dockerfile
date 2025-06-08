@@ -4,9 +4,6 @@ RUN useradd -m green-user
 
 WORKDIR /app
 
-# Copia o JAR e já atribui a permissão ao usuário
-COPY --chown=green-user:green-user green-alert-api.jar app.jar
-
 USER green-user
 
 ENV APP_ENV=production
