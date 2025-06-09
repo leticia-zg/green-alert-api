@@ -1,25 +1,20 @@
-
-# 🌳 monitor-tree-api
+# 🌳 Monitor Tree API
 
 API para monitoramento de sensores, leituras e alertas, com autenticação via JWT 🔐.
 
+## 🌐 Link de Deploy
 
-Documentação Swagger http://localhost:8080/swagger-ui/index.html
+Acesse a aplicação em produção: [http://172.191.46.215:8080](http://172.191.46.215:8080)
+
+## 📑 Documentação Swagger
+
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
 ---
 
 ## 🛢 Banco de Dados
 
 Esta API utiliza **MySQL** 🐬.
-
-Configure o arquivo `application.properties` com suas credenciais:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/monitor_tree
-spring.datasource.username=seu_usuario
-spring.datasource.password=sua_senha
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
 
 ---
 
@@ -38,10 +33,10 @@ Authorization: Bearer <token>
 
 ## 🚀 Endpoints
 
-### 1. 🔑 Login
+### 🔑 Login
 
-**POST** `http://localhost:8080/login`  
-**Body:**
+**POST** `/login`
+
 ```json
 {
   "email": "ana@fiap.com.br",
@@ -51,16 +46,16 @@ Authorization: Bearer <token>
 
 ---
 
-### 2. 👤 Criar usuário
+### 👤 Criar Usuário
 
-**POST** `http://localhost:8080/usuarios`  
+**POST** `/usuarios`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
-**Body:**
 ```json
 {
   "nome": "Leticia",
@@ -74,26 +69,27 @@ Content-Type: application/json
 
 ---
 
-### 3. 📋 Listar usuários
+### 📋 Listar Usuários
 
-**GET** `http://localhost:8080/usuarios`  
+**GET** `/usuarios`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 4. 🛠 Cadastrar sensor
+### 🛠 Cadastrar Sensor
 
-**POST** `http://localhost:8080/sensores`  
+**POST** `/sensores`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
-**Body:**
 ```json
 {
   "nome": "Sensor de Temperatura",
@@ -105,36 +101,27 @@ Content-Type: application/json
 
 ---
 
-### 5. 🔍 Listar sensores
+### 📡 Buscar Sensor por ID
 
-**GET** `http://localhost:8080/sensores`  
+**GET** `/sensores/{id}`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 6. 📡 Buscar sensor por ID
+### ✏️ Atualizar Sensor
 
-**GET** `http://localhost:8080/sensores/{id}`  
+**PUT** `/sensores/{id}`
+
 **Headers:**
-```
-Authorization: Bearer <token>
-```
-
----
-
-### 7. ✏️ Atualizar sensor
-
-**PUT** `http://localhost:8080/sensores/{id}`  
-**Headers:**
-```
+```http
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
-**Body:**
 ```json
 {
   "nome": "Sensor Atualizado",
@@ -146,26 +133,27 @@ Content-Type: application/json
 
 ---
 
-### 8. 🗑 Deletar sensor
+### 🗑 Deletar Sensor
 
-**DELETE** `http://localhost:8080/sensores/{id}`  
+**DELETE** `/sensores/{id}`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 9. 📝 Criar leitura
+### 📝 Criar Leitura
 
-**POST** `http://localhost:8080/leituras`  
+**POST** `/leituras`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
-**Body:**
 ```json
 {
   "valor": 25.5,
@@ -177,36 +165,38 @@ Content-Type: application/json
 
 ---
 
-### 10. 📊 Listar leituras
+### 📊 Listar Leituras
 
-**GET** `http://localhost:8080/leituras`  
+**GET** `/leituras`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 11. 🔍 Buscar leitura por ID
+### 🔍 Buscar Leitura por ID
 
-**GET** `http://localhost:8080/leituras/{id}`  
+**GET** `/leituras/{id}`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 12. ✏️ Atualizar leitura
+### ✏️ Atualizar Leitura
 
-**PUT** `http://localhost:8080/leituras/{id}`  
+**PUT** `/leituras/{id}`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
-**Body:**
 ```json
 {
   "valor": 30.1,
@@ -218,26 +208,27 @@ Content-Type: application/json
 
 ---
 
-### 13. 🗑 Deletar leitura
+### 🗑 Deletar Leitura
 
-**DELETE** `http://localhost:8080/leituras/{id}`  
+**DELETE** `/leituras/{id}`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 14. 🚨 Criar alerta
+### 🚨 Criar Alerta
 
-**POST** `http://localhost:8080/alertas`  
+**POST** `/alertas`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
-**Body:**
 ```json
 {
   "descricao": "Temperatura muito alta",
@@ -250,36 +241,38 @@ Content-Type: application/json
 
 ---
 
-### 15. 📄 Listar alertas
+### 📄 Listar Alertas
 
-**GET** `http://localhost:8080/alertas`  
+**GET** `/alertas`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 16. 🔍 Buscar alerta por ID
+### 🔍 Buscar Alerta por ID
 
-**GET** `http://localhost:8080/alertas/{id}`  
+**GET** `/alertas/{id}`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 ```
 
 ---
 
-### 17. ✏️ Atualizar alerta
+### ✏️ Atualizar Alerta
 
-**PUT** `http://localhost:8080/alertas/{id}`  
+**PUT** `/alertas/{id}`
+
 **Headers:**
-```
+```http
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
-**Body:**
 ```json
 {
   "descricao": "Alerta atualizado",
@@ -292,17 +285,22 @@ Content-Type: application/json
 
 ---
 
-### 18. 🗑 Deletar alerta
+### 🗑 Deletar Alerta
 
-**DELETE** `http://localhost:8080/alertas/{id}`  
+**DELETE** `/alertas/{id}`
+
 **Headers:**
+```http
+Authorization: Bearer <token>
+```
 
+---
 
-# 📞 Chamados
+## 📞 Chamados
 
-### 1. Criar chamado
+### 📌 Criar Chamado
 
-**POST /chamados**
+**POST** `/chamados`
 
 ```json
 {
@@ -317,21 +315,21 @@ Content-Type: application/json
 
 ---
 
-### 2. Listar chamados (paginado)
+### 📄 Listar Chamados (Paginado)
 
-**GET /chamados?page=0&size=10**
-
----
-
-### 3. Buscar chamado por ID
-
-**GET /chamados/{id}**
+**GET** `/chamados?page=0&size=10`
 
 ---
 
-### 4. Atualizar chamado
+### 🔍 Buscar Chamado por ID
 
-**PUT /chamados/{id}**
+**GET** `/chamados/{id}`
+
+---
+
+### ✏️ Atualizar Chamado
+
+**PUT** `/chamados/{id}`
 
 ```json
 {
@@ -347,13 +345,13 @@ Content-Type: application/json
 
 ---
 
-### 5. Deletar chamado
+### 🗑 Deletar Chamado
 
-**DELETE /chamados/{id}**
+**DELETE** `/chamados/{id}`
 
 ---
 
-## 🏷️ Valores possíveis para `tipo`
+## 🏷️ Valores Possíveis para `tipo`
 
 - `DRONES`
 - `ESPECIALISTA`
@@ -364,12 +362,8 @@ Content-Type: application/json
 
 ## ℹ️ Observações
 
-- O campo `status` deve ser um valor válido do enum `ChamadoStatus` (ex: `ABERTO`, `PENDENTE`, `RESOLVIDO`).
-- O campo `tipo` deve ser um dos valores acima.
-- Datas devem estar no formato ISO, ex: `"2025-06-07T10:00:00"`.
-
----
-Authorization: Bearer <token>
-```
+- O campo `status` deve ser um valor válido do enum `ChamadoStatus` (`ABERTO`, `PENDENTE`, `RESOLVIDO`).
+- O campo `tipo` deve ser um dos valores listados acima.
+- Datas devem estar no formato ISO: `"2025-06-07T10:00:00"`.
 
 ---
