@@ -6,6 +6,10 @@ API para monitoramento de sensores, leituras e alertas, com autenticação via J
 
 Acesse a aplicação em produção: [http://172.191.46.215:8080](http://172.191.46.215:8080)
 
+## 🎥 Link do Youtube
+
+Vídeo Demonstrativo: [https://youtu.be/YJ3WQ0sZKOA](https://youtu.be/YJ3WQ0sZKOA)
+
 ## 📑 Documentação Swagger
 
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
