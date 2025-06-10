@@ -8,7 +8,7 @@ Acesse a aplicação em produção: [http://172.191.46.215:8080](http://172.191.
 
 ## 🎥 Link do Youtube
 
-Vídeo Demonstrativo: [https://youtu.be/YJ3WQ0sZKOA](https://youtu.be/YJ3WQ0sZKOA)
+Vídeo Demonstrativo: [https://youtu.be/2RgMnYQwSB0](https://youtu.be/2RgMnYQwSB0)
 
 ## 📑 Documentação Swagger
 
