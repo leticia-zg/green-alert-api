@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -30,17 +31,16 @@ public class SecurityConfig {
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers(
-                    "/login",              // seu endpoint de autenticação
-                    "/auth/login",         // (caso use esse prefixo)
+                    "/login",
+                    "/auth/login",
                     "/v3/api-docs/**",
                     "/swagger-ui/**",
                     "/swagger-ui.html",
                     "/actuator/health",
                     "/error",
-                    "/favicon.ico",
-                    "/**/*.css", "/**/*.js"
+                    "/favicon.ico"
                 ).permitAll()
-                .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**").permitAll() // preflight
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // CORS preflight
                 .anyRequest().authenticated()
             )
             .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
