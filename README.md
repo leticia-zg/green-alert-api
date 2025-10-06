@@ -4,22 +4,46 @@
 API para monitoramento de sensores, leituras e alertas, com autenticação via JWT 🔐.
 
 
-Documentação Swagger http://localhost:8080/swagger-ui/index.html
+Documentação Swagger https://green-alert-rm555276.azurewebsites.net/swagger-ui/index.html
 ---
 
 ## 🛢 Banco de Dados
 
-Esta API utiliza **MySQL** 🐬.
+Esta API utiliza **SQL SERVER**.
 
 Configure o arquivo `application.properties` com suas credenciais:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/monitor_tree
+spring.datasource.url= jdbc:sqlserver://sqlserver-rm??????.database.windows.net:1433;database=greenalertdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
 ```
+
+---
+
+## Para deploy no Azure
+
+### 1° Registrar provedores necessários 
+az provider register --namespace Microsoft.Web
+az provider register --namespace Microsoft.Insights
+az provider register --namespace Microsoft.OperationalInsights
+az provider register --namespace Microsoft.Sql
+
+
+### 2° Rodar o Script 'create-sql-server.ps1'
+### 3° Rodar o Script 'deploy-green-alert'
+
+az extension add --name application-insights
+chmod +x deploy-green-alert.sh
+./deploy-green-alert.sh
+
+### 4° Configurar secrets do github
+
+SPRING_DATASOURCE_URL = jdbc:sqlserver://sqlserver-rm556219.database.windows.net:1433;database=greenalertdb;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+SPRING_DATASOURCE_USERNAME = adm556219
+SPRING_DATASOURCE_PASSWORD = Green@Alert
+
+### 5° Rodar a aplicação
 
 ---
 
@@ -228,79 +252,7 @@ Authorization: Bearer <token>
 
 ---
 
-### 14. 🚨 Criar alerta
-
-**POST** `http://localhost:8080/alertas`  
-**Headers:**
-```
-Authorization: Bearer <token>
-Content-Type: application/json
-```
-
-**Body:**
-```json
-{
-  "descricao": "Temperatura muito alta",
-  "tipoAlerta": "TEMPERATURA",
-  "status": "ATIVO",
-  "dataHora": "2025-06-04T13:00:00",
-  "sensorId": 1
-}
-```
-
----
-
-### 15. 📄 Listar alertas
-
-**GET** `http://localhost:8080/alertas`  
-**Headers:**
-```
-Authorization: Bearer <token>
-```
-
----
-
-### 16. 🔍 Buscar alerta por ID
-
-**GET** `http://localhost:8080/alertas/{id}`  
-**Headers:**
-```
-Authorization: Bearer <token>
-```
-
----
-
-### 17. ✏️ Atualizar alerta
-
-**PUT** `http://localhost:8080/alertas/{id}`  
-**Headers:**
-```
-Authorization: Bearer <token>
-Content-Type: application/json
-```
-
-**Body:**
-```json
-{
-  "descricao": "Alerta atualizado",
-  "tipoAlerta": "UMIDADE",
-  "status": "RESOLVIDO",
-  "dataHora": "2025-06-04T13:30:00",
-  "sensorId": 1
-}
-```
-
----
-
-### 18. 🗑 Deletar alerta
-
-**DELETE** `http://localhost:8080/alertas/{id}`  
-**Headers:**
-
-
-# 📞 Chamados
-
-### 1. Criar chamado
+### 14. Criar chamado
 
 **POST /chamados**
 
@@ -317,19 +269,19 @@ Content-Type: application/json
 
 ---
 
-### 2. Listar chamados (paginado)
+### 15. Listar chamados (paginado)
 
 **GET /chamados?page=0&size=10**
 
 ---
 
-### 3. Buscar chamado por ID
+### 16. Buscar chamado por ID
 
 **GET /chamados/{id}**
 
 ---
 
-### 4. Atualizar chamado
+### 17. Atualizar chamado
 
 **PUT /chamados/{id}**
 
@@ -347,7 +299,7 @@ Content-Type: application/json
 
 ---
 
-### 5. Deletar chamado
+### 18. Deletar chamado
 
 **DELETE /chamados/{id}**
 
